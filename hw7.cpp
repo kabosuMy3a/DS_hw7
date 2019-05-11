@@ -38,14 +38,9 @@ int main(int argc, char* argv[]){
 
 		if(opt == "a"){
 			
-			p = strtok(0x0," ");
-			
-			if (isdigit(p[0])&& p[1]==0x0)
-				key = stoi(p) ;
-			else{ 
-				cout << "stoi error:: check example file" <<endl;
-				break;
-			}
+			p = strtok(0x0," ");	
+			key = stoi(p) ;
+			//need exception handling
 
 			p = strtok(0x0," ");
 			data = p ;
@@ -57,13 +52,7 @@ int main(int argc, char* argv[]){
 		else if(opt == "d"){
 		
 			p = strtok(0x0," ");
-
-			if (isdigit(p[0])&& p[1]==0x0)
-				key = stoi(p) ;
-			else{ 
-				cout << "stoi error:: check example file" <<endl;
-				break;
-			}
+			key = stoi(p) ;
 
 			cout << "sungnyu daiski" << endl;
 
