@@ -21,8 +21,14 @@ class BinarySearchTree {
 	private :
 			bst_node * root ;
 			void destroyBST(bst_node * node);		
+			
 			bst_node * getNodeFromKey(bst_node * node, int num) ;
 			bst_node * findParent(int num) ;
+			bst_node * findParent2(int num) ;
+
+			void replaceNode(bst_node * beforeNode, bst_node * afterNode);
+			void copyValue(bst_node * copiedNode, bst_node * copyFromNode);
+
 
 	public :
 
@@ -39,7 +45,7 @@ class BinarySearchTree {
 
 			void inOrderPrint();
 			void inOrderPrint(bst_node * leaf) ;
-
+			bst_node * getMinFromRightChild(bst_node * leaf);
 };
 
 

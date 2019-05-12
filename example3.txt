@@ -1,8 +1,11 @@
 a 10 richard
 a 2 stark
 a 1 howard
+a 0 hakak
 a 5 tony
 a 9 pepper
-d 9
+a 3 pepr
+a 4 aaa
+d 2 
 p
 q

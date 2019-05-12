@@ -117,6 +117,42 @@ bst_node * BinarySearchTree::findParent(int num){
 
 }
 
+bst_node * BinarySearchTree::findParent2(int num){
+
+	bst_node * parent = root ;
+
+	while (parent!=0x0){
+
+		if (parent->key == num){
+			return 0x0 ;
+		}	
+	
+		else if (parent->key > num ){
+
+	
+			if(parent->left_child){ 
+				if (parent->left_child->key == num) return parent ;
+				else parent = parent->left_child ;
+			}
+			else return parent ;
+
+		}
+
+		else{
+		
+			if(parent->right_child){
+				if (parent->right_child->key ==num) return parent ;
+				else parent= parent->right_child ;
+			}	
+			else return parent ; 
+		}
+
+	}
+
+	return 0x0 ;
+
+}
+
 void BinarySearchTree::insert(int key, string data){
 
 
@@ -139,33 +175,46 @@ void BinarySearchTree::insert(int key, string data){
 
 void BinarySearchTree::deletion(int key){
 
-	bst_node * yellowLeaf = getNodeFromKey(key) ;
-	bst_node * branch = findParent(key) ;
+	bst_node * yellowleaf = getNodeFromKey(key) ;
 
-
-	if (yellowLeaf==0x0){
+	if (yellowleaf==0x0){
 
 		cout << "<nonexistent value> is not in the tree" << endl ;
 		return ;
 	}
 
+	
 
+	if (yellowleaf->left_child ==0x0 && yellowleaf->right_child == 0x0) replaceNode(yellowleaf,0x0) ;
+	
+	else if (yellowleaf->left_child == 0x0) replaceNode(yellowleaf,yellowleaf->right_child);
+	else if (yellowleaf->right_child == 0x0) replaceNode(yellowleaf,yellowleaf->left_child);
+	
+	else {
+		bst_node * seed = getMinFromRightChild(yellowleaf);
+		copyValue(yellowleaf,seed);
+		
+		//if(seed->right_child != 0x0) replaceNode(seed,seed->right_child) ;	
+		
 
+	}
+
+	
 
 
 }
 
 
+
 void BinarySearchTree::replaceNode(bst_node * beforeNode, bst_node * afterNode){
 
+		
 	
-
-	bst_node * branch = findParent(beforeNode->key) ; 
+	bst_node * branch = findParent2(beforeNode->key);	
 
 	if (branch == 0x0){
 
 		root = afterNode ;
-
 	}
 
 	else{
@@ -177,20 +226,48 @@ void BinarySearchTree::replaceNode(bst_node * beforeNode, bst_node * afterNode){
 
 		if (isRightChild == true){
 
-			delete parent->right_child ;//==beforeNode
-			parent->right_child = afterNode ;
+			//delete branch->right_child ;//==beforeNode
+			branch->right_child = afterNode ;
 
 		}
 
 		else{
 
-			delete parent->left_child ;//==beforNode
-			parent->left_child = afterNode; 
-
+			//delete branch->left_child ;//==beforNode
+			branch->left_child = afterNode; 
 		}
 
 	}
 
 }
 
-void 
+void BinarySearchTree::copyValue(bst_node * copiedNode, bst_node * copyFromNode){
+
+	copiedNode->key = copyFromNode->key ;
+	copiedNode->data = copyFromNode->data ;
+		
+}
+
+bst_node * BinarySearchTree::getMinFromRightChild(bst_node * leaf){
+
+	bst_node * seed ;
+
+	if(leaf->right_child == 0x0){
+
+		return 0x0; 
+	}
+
+	else{
+	       
+		seed = leaf->right_child ;
+		
+		while(seed->left_child != 0x0){
+			
+			seed = seed->left_child ;
+
+		}
+
+		return seed ;
+
+	}
+}
