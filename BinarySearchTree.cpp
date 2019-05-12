@@ -192,11 +192,14 @@ void BinarySearchTree::deletion(int key){
 	
 	else {
 		bst_node * seed = getMinFromRightChild(yellowleaf);
-		copyValue(yellowleaf,seed);
 		
-		//if(seed->right_child != 0x0) replaceNode(seed,seed->right_child) ;	
+		int seed_key = seed->key;
+		string seed_data = seed->data;
 		
-
+		replaceNode(seed,seed->right_child) ;	
+		
+		yellowleaf->key = seed_key;
+		yellowleaf->data = seed_data;
 	}
 
 	
