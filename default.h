@@ -1,4 +1,4 @@
-#ifndef __DEFUALT_H__
+#ifndef __DEFAULT_H__
 #define __DEFAULT_H__
 
 
