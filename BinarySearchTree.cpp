@@ -130,11 +130,67 @@ void BinarySearchTree::insert(int key, string data){
 
 	}
 
-	else if(!root) root = leaf ; //first leaf will be root.
+	else if(root == 0x0 ) root = leaf ; //first leaf will be root.
 
 	else cout << "<duplicate_val> is already in the tree" << endl ;
 		
 			
 }
 
+void BinarySearchTree::deletion(int key){
 
+	bst_node * yellowLeaf = getNodeFromKey(key) ;
+	bst_node * branch = findParent(key) ;
+
+
+	if (yellowLeaf==0x0){
+
+		cout << "<nonexistent value> is not in the tree" << endl ;
+		return ;
+	}
+
+
+
+
+
+}
+
+
+void BinarySearchTree::replaceNode(bst_node * beforeNode, bst_node * afterNode){
+
+	
+
+	bst_node * branch = findParent(beforeNode->key) ; 
+
+	if (branch == 0x0){
+
+		root = afterNode ;
+
+	}
+
+	else{
+
+		bool isRightChild ;
+		int mp = (beforeNode->key - branch->key);
+		if (mp > 0) isRightChild = true ;
+		else isRightChild = false ;
+
+		if (isRightChild == true){
+
+			delete parent->right_child ;//==beforeNode
+			parent->right_child = afterNode ;
+
+		}
+
+		else{
+
+			delete parent->left_child ;//==beforNode
+			parent->left_child = afterNode; 
+
+		}
+
+	}
+
+}
+
+void 

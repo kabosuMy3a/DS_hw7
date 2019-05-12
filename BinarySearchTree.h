@@ -35,7 +35,7 @@ class BinarySearchTree {
 				
 			void insert(int key, string data);
 		
-			//void delete(int key); 		
+			void deletion(int key); 		
 
 			void inOrderPrint();
 			void inOrderPrint(bst_node * leaf) ;

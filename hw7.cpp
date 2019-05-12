@@ -10,9 +10,8 @@ int main(int argc, char* argv[]){
 	ifstream infile(fileName.c_str());
 	if(!infile){
 		cout << "input correct file name again" <<endl;
-		getline(cin,fileName);
+		return -1;	
 	}
-	if(!infile) return -1;	
 	//fileIO
 
 
@@ -53,8 +52,8 @@ int main(int argc, char* argv[]){
 		
 			p = strtok(0x0," ");
 			key = stoi(p) ;
-
-			cout << "sungnyu daiski" << endl;
+			
+			BST->deletion(key) ;
 
 		}
 
